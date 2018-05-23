@@ -1,6 +1,7 @@
 package me.yokeyword.sample.city;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,10 +34,10 @@ public class SearchFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_city, container, false);
-        mTvNoResult = (TextView) view.findViewById(R.id.tv_no_result);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recy);
+        mTvNoResult = view.findViewById(R.id.tv_no_result);
+        mRecyclerView = view.findViewById(R.id.recy);
         return view;
     }
 
@@ -70,8 +71,9 @@ public class SearchFragment extends Fragment {
             items.addAll(mDatas);
         }
 
+        @NonNull
         @Override
-        public VH onCreateViewHolder(ViewGroup parent, int viewType) {
+        public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             final VH holder = new VH(LayoutInflater.from(getActivity()).inflate(R.layout.item_city, parent, false));
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,7 +91,7 @@ public class SearchFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(VH holder, int position) {
+        public void onBindViewHolder(@NonNull VH holder, int position) {
             holder.tvName.setText(items.get(position).getName());
         }
 

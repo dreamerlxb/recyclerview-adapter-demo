@@ -49,7 +49,7 @@ public class CityAdapter extends IndexableAdapter<CityEntity> {
 
         public IndexVH(View itemView) {
             super(itemView);
-            tv = (TextView) itemView.findViewById(R.id.tv_index);
+            tv = itemView.findViewById(R.id.tv_index);
         }
     }
 
@@ -58,7 +58,7 @@ public class CityAdapter extends IndexableAdapter<CityEntity> {
 
         public ContentVH(View itemView) {
             super(itemView);
-            tv = (TextView) itemView.findViewById(R.id.tv_name);
+            tv = itemView.findViewById(R.id.tv_name);
         }
     }
 }

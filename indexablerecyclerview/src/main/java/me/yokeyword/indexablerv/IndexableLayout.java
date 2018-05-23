@@ -1,5 +1,6 @@
 package me.yokeyword.indexablerv;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -73,7 +74,7 @@ public class IndexableLayout extends FrameLayout {
      */
     private View mLastInvisibleRecyclerViewItemView;
 
-    private boolean mSticyEnable = true;
+    private boolean mStickyEnable = true;
     private RecyclerView.ViewHolder mStickyViewHolder;
     private String mStickyTitle;
 
@@ -184,7 +185,7 @@ public class IndexableLayout extends FrameLayout {
 
         adapter.registerDataSetObserver(mDataSetObserver);
         mRealAdapter.setIndexableAdapter(adapter);
-        if (mSticyEnable) {
+        if (mStickyEnable) {
             initStickyView(adapter);
         }
     }
@@ -263,7 +264,7 @@ public class IndexableLayout extends FrameLayout {
      * set Sticky Enable
      */
     public void setStickyEnable(boolean enable) {
-        this.mSticyEnable = enable;
+        this.mStickyEnable = enable;
     }
 
     /**
@@ -383,6 +384,7 @@ public class IndexableLayout extends FrameLayout {
         mRecy.setLayoutManager(mLayoutManager);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void initListener() {
         mRecy.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -439,7 +441,7 @@ public class IndexableLayout extends FrameLayout {
 
         mIndexBar.setSelection(firstItemPosition);
 
-        if (!mSticyEnable) return;
+        if (!mStickyEnable) return;
         ArrayList<EntityWrapper> list = mRealAdapter.getItems();
         if (mStickyViewHolder != null && list.size() > firstItemPosition) {
             EntityWrapper wrapper = list.get(firstItemPosition);
@@ -614,7 +616,7 @@ public class IndexableLayout extends FrameLayout {
     private void initMDOverlay(int color) {
         mMDOverlay = new AppCompatTextView(mContext);
         mMDOverlay.setBackgroundResource(R.drawable.indexable_bg_md_overlay);
-        ((AppCompatTextView) mMDOverlay).setSupportBackgroundTintList(ColorStateList.valueOf(color));
+        ViewCompat.setBackgroundTintList(mMDOverlay, ColorStateList.valueOf(color));
         mMDOverlay.setSingleLine();
         mMDOverlay.setTextColor(Color.WHITE);
         mMDOverlay.setTextSize(38);

@@ -39,11 +39,7 @@ class IndexBar extends View {
     }
 
     void init(Drawable barBg, int barTextColor, int barFocusTextColor, float barTextSize, float textSpace) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            setBackground(barBg);
-        } else {
-            setBackgroundDrawable(barBg);
-        }
+        setBackground(barBg);
 
         this.mTextSpace = textSpace;
 

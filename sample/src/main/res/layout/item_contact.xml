@@ -13,14 +13,15 @@
         android:id="@+id/img_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        tools:ignore="ContentDescription"
         android:src="@mipmap/ic_account_circle_grey_400_48dp" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/img_avatar"
+        android:layout_toEndOf="@id/img_avatar"
         tools:text="张三"
         android:textColor="#373737"
         android:textSize="16sp" />
@@ -31,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_name"
         android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/img_avatar"
+        android:layout_toEndOf="@id/img_avatar"
         tools:text="18712345678"
         android:textColor="#969696" />
 

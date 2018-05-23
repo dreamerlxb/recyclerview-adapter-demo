@@ -38,7 +38,7 @@ public class PickContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_contact);
         getSupportActionBar().setTitle("联系人");
-        IndexableLayout indexableLayout = (IndexableLayout) findViewById(R.id.indexableLayout);
+        IndexableLayout indexableLayout = findViewById(R.id.indexableLayout);
 
         indexableLayout.setLayoutManager(new LinearLayoutManager(this));
 //        indexableLayout.setLayoutManager(new GridLayoutManager(this, 3));
@@ -131,8 +131,8 @@ public class PickContactActivity extends AppCompatActivity {
 
             public VH(View itemView) {
                 super(itemView);
-                tv = (TextView) itemView.findViewById(R.id.tv_title);
-                img = (ImageView) itemView.findViewById(R.id.img);
+                tv = itemView.findViewById(R.id.tv_title);
+                img = itemView.findViewById(R.id.img);
             }
         }
     }
@@ -175,7 +175,7 @@ public class PickContactActivity extends AppCompatActivity {
 
             public VH(View itemView) {
                 super(itemView);
-                img = (ImageView) itemView.findViewById(R.id.img);
+                img = itemView.findViewById(R.id.img);
             }
         }
     }

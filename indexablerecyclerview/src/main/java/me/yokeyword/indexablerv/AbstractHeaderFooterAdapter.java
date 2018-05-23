@@ -20,9 +20,9 @@ abstract class AbstractHeaderFooterAdapter<T> {
     private final HeaderFooterDataObservable mDataSetObservable = new HeaderFooterDataObservable();
     private final IndexBarDataObservable mIndexBarDataSetObservable = new IndexBarDataObservable();
 
-    ArrayList<EntityWrapper<T>> mEntityWrapperList = new ArrayList<>();
-    protected OnItemClickListener<T> mListener;
-    protected OnItemLongClickListener<T> mLongListener;
+    private ArrayList<EntityWrapper<T>> mEntityWrapperList = new ArrayList<>();
+    OnItemClickListener<T> mListener;
+    OnItemLongClickListener<T> mLongListener;
 
     private String mIndex, mIndexTitle;
 

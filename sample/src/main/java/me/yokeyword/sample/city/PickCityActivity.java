@@ -4,17 +4,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.github.promeg.pinyinhelper.Pinyin;
-import com.github.promeg.tinypinyin.lexicons.android.cncity.CnCityDict;
+import com.github.promeg.pinyinhelper.PinyinMapDict;
+//import com.github.promeg.tinypinyin.lexicons.android.cncity.CnCityDict;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import me.yokeyword.indexablerv.EntityWrapper;
 import me.yokeyword.indexablerv.IndexableAdapter;
@@ -41,27 +45,27 @@ public class PickCityActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("选择城市");
 
         mSearchFragment = (SearchFragment) getSupportFragmentManager().findFragmentById(R.id.search_fragment);
-        IndexableLayout indexableLayout = (IndexableLayout) findViewById(R.id.indexableLayout);
-        mSearchView = (SearchView) findViewById(R.id.searchview);
-        mProgressBar = (FrameLayout) findViewById(R.id.progress);
+        IndexableLayout indexableLayout = findViewById(R.id.indexableLayout);
+        mSearchView = findViewById(R.id.searchview);
+        mProgressBar = findViewById(R.id.progress);
 
 
 //        indexableLayout.setLayoutManager(new LinearLayoutManager(this));
-        indexableLayout.setLayoutManager(new GridLayoutManager(this, 2));
+        indexableLayout.setLayoutManager(new LinearLayoutManager(this));
 
         // 多音字处理
-        Pinyin.init(Pinyin.newConfig().with(CnCityDict.getInstance(this)));
+//        Pinyin.init(Pinyin.newConfig()); //.with(CnCityDict.getInstance(this))
 
         // 添加自定义多音字词典
-//        Pinyin.init(Pinyin.newConfig()
-//                .with(new PinyinMapDict() {
-//                    @Override
-//                    public Map<String, String[]> mapping() {
-//                        HashMap<String, String[]> map = new HashMap<String, String[]>();
-//                        map.put("重庆",  new String[]{"CHONG", "QING"});
-//                        return map;
-//                    }
-//                }));
+        Pinyin.init(Pinyin.newConfig()
+                .with(new PinyinMapDict() {
+                    @Override
+                    public Map<String, String[]> mapping() {
+                        HashMap<String, String[]> map = new HashMap<String, String[]>();
+                        map.put("重庆",  new String[]{"CHONG", "QING"});
+                        return map;
+                    }
+                }));
 
 
         // 快速排序。  排序规则设置为：只按首字母  （默认全拼音排序）  效率很高，是默认的10倍左右。  按需开启～

@@ -1,5 +1,6 @@
 package me.yokeyword.indexablerv;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
@@ -82,8 +83,9 @@ class RealAdapter<T extends IndexableEntity> extends RecyclerView.Adapter<Recycl
         return mDatasList.get(position).getItemType();
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int viewType) {
         final RecyclerView.ViewHolder holder;
 
         if (viewType == EntityWrapper.TYPE_TITLE) {
@@ -171,7 +173,7 @@ class RealAdapter<T extends IndexableEntity> extends RecyclerView.Adapter<Recycl
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         EntityWrapper<T> item = mDatasList.get(position);
 
         int viewType = getItemViewType(position);
