@@ -687,7 +687,7 @@ public class IndexableLayout extends FrameLayout {
                     entity.setIndex(pinyin.substring(0, 1).toUpperCase());
                     entity.setIndexByField(item.getFieldIndexBy());
                 } else if (PinyinUtil.matchingPolyphone(pinyin)) {
-                    entity.setIndex(PinyinUtil.gePolyphoneInitial(pinyin).toUpperCase());
+                    entity.setIndex(PinyinUtil.getPolyphoneInitial(pinyin).toUpperCase());
                     entity.setPinyin(PinyinUtil.getPolyphoneRealPinyin(pinyin));
                     String hanzi = PinyinUtil.getPolyphoneRealHanzi(indexName);
                     entity.setIndexByField(hanzi);

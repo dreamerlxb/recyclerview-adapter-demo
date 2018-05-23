@@ -237,10 +237,10 @@ class RealAdapter<T extends IndexableEntity> extends RecyclerView.Adapter<Recycl
     }
 
     void removeHeaderFooterData(boolean header, EntityWrapper data) {
-        processremoveHeaderFooterData(header ? mHeaderDatasList : mFooterDatasList, data);
+        processRemoveHeaderFooterData(header ? mHeaderDatasList : mFooterDatasList, data);
     }
 
-    private void processremoveHeaderFooterData(ArrayList<EntityWrapper<T>> list, EntityWrapper data) {
+    private void processRemoveHeaderFooterData(ArrayList<EntityWrapper<T>> list, EntityWrapper data) {
         for (int i = 0; i < list.size(); i++) {
             EntityWrapper wrapper = list.get(i);
             if (wrapper == data) {

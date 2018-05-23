@@ -9,8 +9,8 @@
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="96dp"
-        android:scaleType="center"
         android:alpha="0.6"
-        tools:ignore="ContentDescription"
-        android:src="@mipmap/banner" />
+        android:scaleType="center"
+        android:src="@mipmap/banner"
+        tools:ignore="ContentDescription" />
 </FrameLayout>

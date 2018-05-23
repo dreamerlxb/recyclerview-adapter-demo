@@ -32,7 +32,7 @@ public class PinyinUtil {
         return Pattern.matches(PATTERN_POLYPHONE, inputString);
     }
 
-    static String gePolyphoneInitial(String inputString) {
+    static String getPolyphoneInitial(String inputString) {
         return inputString.substring(1, 2);
     }
 
