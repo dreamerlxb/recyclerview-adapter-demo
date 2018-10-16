@@ -131,7 +131,7 @@ public class SearchFragment extends Fragment {
         class VH extends RecyclerView.ViewHolder {
             private TextView tvName;
 
-            public VH(View itemView) {
+            VH(View itemView) {
                 super(itemView);
                 tvName = itemView.findViewById(R.id.tv_name);
             }

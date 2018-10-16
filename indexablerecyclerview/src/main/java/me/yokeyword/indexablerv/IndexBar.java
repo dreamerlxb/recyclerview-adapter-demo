@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
@@ -80,7 +79,9 @@ class IndexBar extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (mIndexList.size() == 0) return;
+        if (mIndexList.size() == 0) {
+            return;
+        }
 
         mIndexHeight = ((float) getHeight()) / mIndexList.size();
 
@@ -173,8 +174,9 @@ class IndexBar extends View {
     }
 
     void setSelection(int firstVisibleItemPosition) {
-        if (mDatas == null || mDatas.size() <= firstVisibleItemPosition || firstVisibleItemPosition < 0)
+        if (mDatas == null || mDatas.size() <= firstVisibleItemPosition || firstVisibleItemPosition < 0) {
             return;
+        }
         EntityWrapper wrapper = mDatas.get(firstVisibleItemPosition);
         int position = mIndexList.indexOf(wrapper.getIndex());
 

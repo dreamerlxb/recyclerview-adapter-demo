@@ -14,5 +14,4 @@ public class IndexBarDataObservable extends Observable<IndexBarDataObserver> {
             }
         }
     }
-
 }

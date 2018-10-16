@@ -3,7 +3,6 @@ package me.yokeyword.sample.city;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 
 import com.github.promeg.pinyinhelper.Pinyin;
 import com.github.promeg.pinyinhelper.PinyinMapDict;
-//import com.github.promeg.tinypinyin.lexicons.android.cncity.CnCityDict;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +34,7 @@ public class PickCityActivity extends AppCompatActivity {
     private SearchFragment mSearchFragment;
     private SearchView mSearchView;
     private FrameLayout mProgressBar;
-    private SimpleHeaderAdapter mHotCityAdapter;
+    private SimpleHeaderAdapter<CityEntity> mHotCityAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,7 +59,7 @@ public class PickCityActivity extends AppCompatActivity {
                 .with(new PinyinMapDict() {
                     @Override
                     public Map<String, String[]> mapping() {
-                        HashMap<String, String[]> map = new HashMap<String, String[]>();
+                        HashMap<String, String[]> map = new HashMap<>(4);
                         map.put("重庆",  new String[]{"CHONG", "QING"});
                         return map;
                     }
