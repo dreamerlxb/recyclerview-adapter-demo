@@ -94,7 +94,9 @@ class IndexBar extends View {
     }
 
     int getPositionForPointY(float y) {
-        if (mIndexList.size() <= 0) return -1;
+        if (mIndexList.size() <= 0) {
+            return -1;
+        }
 
         int position = (int) (y / mIndexHeight);
 

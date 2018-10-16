@@ -15,7 +15,9 @@ public class PinyinUtil {
      * Chinese character -> Pinyin
      */
     public static String getPingYin(String inputString) {
-        if (inputString == null) return "";
+        if (inputString == null) {
+            return "";
+        }
         return Pinyin.toPinyin(inputString, "").toLowerCase();
     }
 

@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.AppCompatTextView;
@@ -98,19 +99,25 @@ public class IndexableLayout extends FrameLayout {
     private HeaderFooterDataObserver<EntityWrapper> mHeaderFooterDataSetObserver = new HeaderFooterDataObserver<EntityWrapper>() {
         @Override
         public void onChanged() {
-            if (mRealAdapter == null) return;
+            if (mRealAdapter == null) {
+                return;
+            }
             mRealAdapter.notifyDataSetChanged();
         }
 
         @Override
         public void onAdd(boolean header, EntityWrapper preData, EntityWrapper data) {
-            if (mRealAdapter == null) return;
+            if (mRealAdapter == null) {
+                return;
+            }
             mRealAdapter.addHeaderFooterData(header, preData, data);
         }
 
         @Override
         public void onRemove(boolean header, EntityWrapper data) {
-            if (mRealAdapter == null) return;
+            if (mRealAdapter == null) {
+                return;
+            }
             mRealAdapter.removeHeaderFooterData(header, data);
         }
     };
@@ -361,8 +368,9 @@ public class IndexableLayout extends FrameLayout {
      * @param layoutManager One of LinearLayoutManager and GridLayoutManager
      */
     public void setLayoutManager(RecyclerView.LayoutManager layoutManager) {
-        if (layoutManager == null)
+        if (layoutManager == null) {
             throw new NullPointerException("LayoutManager == null");
+        }
 
         mLayoutManager = layoutManager;
         if (layoutManager instanceof GridLayoutManager) {
@@ -388,7 +396,7 @@ public class IndexableLayout extends FrameLayout {
     private void initListener() {
         mRecy.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 processScrollListener();
             }
@@ -399,9 +407,13 @@ public class IndexableLayout extends FrameLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int touchPos = mIndexBar.getPositionForPointY(event.getY());
-                if (touchPos < 0) return true;
+                if (touchPos < 0) {
+                    return true;
+                }
 
-                if (!(mLayoutManager instanceof LinearLayoutManager)) return true;
+                if (!(mLayoutManager instanceof LinearLayoutManager)) {
+                    return true;
+                }
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mLayoutManager;
 
                 switch (event.getAction()) {
@@ -421,8 +433,14 @@ public class IndexableLayout extends FrameLayout {
                         break;
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
-                        if (mCenterOverlay != null) mCenterOverlay.setVisibility(GONE);
-                        if (mMDOverlay != null) mMDOverlay.setVisibility(GONE);
+                        if (mCenterOverlay != null) {
+                            mCenterOverlay.setVisibility(GONE);
+                        }
+                        if (mMDOverlay != null) {
+                            mMDOverlay.setVisibility(GONE);
+                        }
+                        break;
+                    default:
                         break;
                 }
                 return true;
@@ -431,17 +449,23 @@ public class IndexableLayout extends FrameLayout {
     }
 
     private void processScrollListener() {
-        if (!(mLayoutManager instanceof LinearLayoutManager)) return;
+        if (!(mLayoutManager instanceof LinearLayoutManager)) {
+            return;
+        }
 
         LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mLayoutManager;
 
         int firstItemPosition;
         firstItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
-        if (firstItemPosition == RecyclerView.NO_POSITION) return;
+        if (firstItemPosition == RecyclerView.NO_POSITION) {
+            return;
+        }
 
         mIndexBar.setSelection(firstItemPosition);
 
-        if (!mStickyEnable) return;
+        if (!mStickyEnable) {
+            return;
+        }
         ArrayList<EntityWrapper> list = mRealAdapter.getItems();
         if (mStickyViewHolder != null && list.size() > firstItemPosition) {
             EntityWrapper wrapper = list.get(firstItemPosition);
@@ -487,7 +511,9 @@ public class IndexableLayout extends FrameLayout {
     private void processScroll(LinearLayoutManager layoutManager, ArrayList<EntityWrapper> list, int position, String title) {
         EntityWrapper nextWrapper = list.get(position);
         View nextTitleView = layoutManager.findViewByPosition(position);
-        if (nextTitleView == null) return;
+        if (nextTitleView == null) {
+            return;
+        }
         if (nextWrapper.getItemType() == EntityWrapper.TYPE_TITLE) {
             if (nextTitleView.getTop() <= mStickyViewHolder.itemView.getHeight() && title != null) {
                 mStickyViewHolder.itemView.setTranslationY(nextTitleView.getTop() - mStickyViewHolder.itemView.getHeight());
@@ -556,7 +582,9 @@ public class IndexableLayout extends FrameLayout {
 
 
     private void showOverlayView(float y, final int touchPos) {
-        if (mIndexBar.getIndexList().size() <= touchPos) return;
+        if (mIndexBar.getIndexList().size() <= touchPos) {
+            return;
+        }
 
         if (mMDOverlay != null) {
             if (mMDOverlay.getVisibility() != VISIBLE) {
@@ -639,7 +667,9 @@ public class IndexableLayout extends FrameLayout {
             @Override
             public void run() {
                 final ArrayList<EntityWrapper> datas = transform(mIndexableAdapter.getItems());
-                if (datas == null) return;
+                if (datas == null) {
+                    return;
+                }
 
                 getSafeHandler().post(new Runnable() {
                     @Override

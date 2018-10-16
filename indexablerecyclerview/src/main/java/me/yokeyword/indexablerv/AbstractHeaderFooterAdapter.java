@@ -140,10 +140,6 @@ abstract class AbstractHeaderFooterAdapter<T> {
         }
     }
 
-//    public void removeAll(List<T> datas) {
-//        // TODO: 16/10/27
-//    }
-
     OnItemClickListener<T> getOnItemClickListener() {
         return mListener;
     }
