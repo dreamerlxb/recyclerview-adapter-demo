@@ -133,7 +133,7 @@ public class SearchFragment extends Fragment {
 
             public VH(View itemView) {
                 super(itemView);
-                tvName = (TextView) itemView.findViewById(R.id.tv_name);
+                tvName = itemView.findViewById(R.id.tv_name);
             }
         }
     }
